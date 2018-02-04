@@ -31,7 +31,6 @@ public class Paswords {
             }
         }
         return caracteres;
-
     }
 
     public char[] almacenar(String cadena) {
@@ -94,61 +93,13 @@ public class Paswords {
         return cadenita;
     }
 
-    public void mayusculas() {
-        GestorIO gestorIO = GestorIO.getGestorIO();
-        boolean correcto = false;
-        do {
-            char mayus = gestorIO.leerChar("Do you want to use capital letters in your new password? [y]/[n]: ");
-            
-            if (mayus == 'y') {
-                mayusculas = true;
-                correcto = true;
-            } else if (mayus == 'n') {
-                mayusculas = false;
-                correcto = true;
-            } else {
-                gestorIO.escribir("Answer the question correctly.");
-            }
-        } while (!correcto);
-
-    }
-
     public int crearClave() {
-        GestorIO gestorIO = GestorIO.getGestorIO();
         int num = 0;
         char[] cadena = this.almacenar(clave);
         for (int x = 0; x < clave.length(); x++) {
             num += num + (int) cadena[x];
         }
-
         return num;
-    }
-
-    public boolean salir() {
-        GestorIO gestorIO = GestorIO.getGestorIO();
-        char mayus = gestorIO.leerChar("Do you want to exit? [y]/[n]: ");
-
-        if (mayus == 'y') {
-            return true;
-        } else if (mayus == 'n') {
-            return false;
-        } else {
-            gestorIO.escribir("Answer the question correctly.");
-        }
-        return false;
-    }
-
-    public int cuantoschar() {
-        GestorIO gestorIO = GestorIO.getGestorIO();
-        boolean correcto = false;
-        do {
-            int numcharr = gestorIO.leerInt("How many characters do you want in your new password?: ");
-            if (numcharr > 0) {
-                return numcharr;
-            }
-            else gestorIO.escribir("Answer the question correctly.");
-        } while (!correcto);
-        return 0;
     }
     
     public char[] inicializar(Paswords Pass){
@@ -157,38 +108,4 @@ public class Paswords {
             int[] cadnum = Pass.convertir(cadena, valorf);
             return Pass.desconvertir(cadnum);
     }
-
-    public static void main(String args[]) {
-        
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VPassword().setVisible(true);
-            }
-        });   
-    }
-
 }
